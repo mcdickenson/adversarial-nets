@@ -2,6 +2,7 @@ import io
 import json
 import os
 
+from common import IMAGE_PATH_FORMAT, PERTURBED_PATH_FORMAT, PERTURBATION_NAMES
 from google.cloud import vision
 
 # Helper function to serialize label data
@@ -33,20 +34,13 @@ vision_client = vision.Client()
 
 # Set up image paths
 image_paths = []
-perturbation_names = [
-  'CaffeNet',
-  'GoogLeNet',
-  'ResNet-152',
-  'VGG-16',
-  'VGG-19',
-  'VGG-F'
-]
+perturbation_names = PERTURBATION_NAMES
 
 for ix in range(12):
-  truth_path = 'data/img/img{}.jpg'.format(ix)
+  truth_path = IMAGE_PATH_FORMAT.format(ix)
   image_paths.append(truth_path)
   for p in perturbation_names:
-    perturbed_path = 'data/perturbed/img{}_{}.jpg'.format(ix, p)
+    perturbed_path = PERTURBED_PATH_FORMAT.format(ix, p)
     image_paths.append(perturbed_path)
 
 # Label images

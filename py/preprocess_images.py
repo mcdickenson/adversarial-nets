@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import PIL
 
+from common import IMAGE_PATH_FORMAT
 
 # load images
 PATH_TEMPLATE_ILSVRC = 'data/img/image_originalonly_{}.jpg'
@@ -21,5 +22,5 @@ for ix, pth in enumerate(image_paths):
   # resize image to match perturbation size
   img = PIL.Image.fromarray(subset)
   resized = img.resize((224, 224), PIL.Image.BICUBIC)
-  resized.save('data/img/img{}.jpg'.format(ix))
+  resized.save(IMAGE_PATH_FORMAT.format(ix))
 
